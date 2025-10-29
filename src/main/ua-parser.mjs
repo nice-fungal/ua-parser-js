@@ -53,6 +53,7 @@
         CONSOLE     = 'console',
         MOBILE      = 'mobile',
         TABLET      = 'tablet',
+        DESKTOP     = 'desktop',
         SMARTTV     = 'smarttv',
         WEARABLE    = 'wearable',
         XR          = 'xr',
@@ -547,7 +548,7 @@
             /\b(ipad)\d\d?,\d\d?[;\]].+ios/i
             ], [MODEL, [VENDOR, APPLE], [TYPE, TABLET]], [
             /(macintosh);/i
-            ], [MODEL, [VENDOR, APPLE]], [
+            ], [MODEL, [VENDOR, APPLE], [TYPE, DESKTOP]], [
 
             // Sharp
             /\b(sh-?[altvz]?\d\d[a-ekm]?)/i
@@ -1412,4 +1413,4 @@
     UAParser.DEVICE = enumerize([MODEL, VENDOR, TYPE, CONSOLE, MOBILE, SMARTTV, TABLET, WEARABLE, EMBEDDED]);
     UAParser.ENGINE = UAParser.OS = enumerize([NAME, VERSION]);
 
-    export {UAParser};
+    export { UAParser, majorize };
