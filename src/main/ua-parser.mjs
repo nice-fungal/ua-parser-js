@@ -35,7 +35,7 @@
 
         // properties
         BROWSER     = 'browser',
-        CPU         = 'cpu',
+        // CPU         = 'cpu',
         DEVICE      = 'device',
         ENGINE      = 'engine',
         OS          = 'os',
@@ -45,7 +45,7 @@
         TYPE        = 'type',
         VENDOR      = 'vendor',
         VERSION     = 'version',
-        ARCHITECTURE= 'architecture',
+        // ARCHITECTURE= 'architecture',
         MAJOR       = 'major',
         MODEL       = 'model',
 
@@ -523,37 +523,37 @@
             ], [NAME, [VERSION, /[^\d\.]+./, EMPTY]]
         ],
 
-        cpu : [[
-
-            /\b((amd|x|x86[-_]?|wow|win)64)\b/i                                 // AMD64 (x64)
-            ], [[ARCHITECTURE, 'amd64']], [
-
-            /(ia32(?=;))/i,                                                     // IA32 (quicktime)
-            /\b((i[346]|x)86)(pc)?\b/i                                          // IA32 (x86)
-            ], [[ARCHITECTURE, 'ia32']], [
-
-            /\b(aarch64|arm(v?[89]e?l?|_?64))\b/i                               // ARM64
-            ], [[ARCHITECTURE, 'arm64']], [
-
-            /\b(arm(v[67])?ht?n?[fl]p?)\b/i                                     // ARMHF
-            ], [[ARCHITECTURE, 'armhf']], [
-
-            // PocketPC mistakenly identified as PowerPC
-            /( (ce|mobile); ppc;|\/[\w\.]+arm\b)/i
-            ], [[ARCHITECTURE, 'arm']], [
-
-            / sun4\w[;\)]/i                                                     // SPARC
-            ], [[ARCHITECTURE, 'sparc']], [
-                                                                                // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
-            /\b(avr32|ia64(?=;)|68k(?=\))|\barm(?=v([1-7]|[5-7]1)l?|;|eabi)|(irix|mips|sparc)(64)?\b|pa-risc)/i,
-            /((ppc|powerpc)(64)?)( mac|;|\))/i,                                 // PowerPC
-            /(?:osf1|[freopnt]{3,4}bsd) (alpha)/i                               // Alpha
-            ], [[ARCHITECTURE, /ower/, EMPTY, lowerize]], [
-            /mc680.0/i
-            ], [[ARCHITECTURE, '68k']], [
-            /winnt.+\[axp/i
-            ], [[ARCHITECTURE, 'alpha']]
-        ],
+        // cpu : [[
+        // 
+        //     /\b((amd|x|x86[-_]?|wow|win)64)\b/i                                 // AMD64 (x64)
+        //     ], [[ARCHITECTURE, 'amd64']], [
+        // 
+        //     /(ia32(?=;))/i,                                                     // IA32 (quicktime)
+        //     /\b((i[346]|x)86)(pc)?\b/i                                          // IA32 (x86)
+        //     ], [[ARCHITECTURE, 'ia32']], [
+        // 
+        //     /\b(aarch64|arm(v?[89]e?l?|_?64))\b/i                               // ARM64
+        //     ], [[ARCHITECTURE, 'arm64']], [
+        // 
+        //     /\b(arm(v[67])?ht?n?[fl]p?)\b/i                                     // ARMHF
+        //     ], [[ARCHITECTURE, 'armhf']], [
+        // 
+        //     // PocketPC mistakenly identified as PowerPC
+        //     /( (ce|mobile); ppc;|\/[\w\.]+arm\b)/i
+        //     ], [[ARCHITECTURE, 'arm']], [
+        // 
+        //     / sun4\w[;\)]/i                                                     // SPARC
+        //     ], [[ARCHITECTURE, 'sparc']], [
+        //                                                                         // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
+        //     /\b(avr32|ia64(?=;)|68k(?=\))|\barm(?=v([1-7]|[5-7]1)l?|;|eabi)|(irix|mips|sparc)(64)?\b|pa-risc)/i,
+        //     /((ppc|powerpc)(64)?)( mac|;|\))/i,                                 // PowerPC
+        //     /(?:osf1|[freopnt]{3,4}bsd) (alpha)/i                               // Alpha
+        //     ], [[ARCHITECTURE, /ower/, EMPTY, lowerize]], [
+        //     /mc680.0/i
+        //     ], [[ARCHITECTURE, '68k']], [
+        //     /winnt.+\[axp/i
+        //     ], [[ARCHITECTURE, 'alpha']]
+        // ],
 
         device : [[
 
@@ -1245,7 +1245,7 @@
                                     .get();
                         };
                         this.set(BROWSER, detect(BROWSER))
-                            .set(CPU, detect(CPU))
+                            // .set(CPU, detect(CPU))
                             .set(DEVICE, detect(DEVICE))
                             .set(ENGINE, detect(ENGINE))
                             .set(OS, detect(OS));
@@ -1444,7 +1444,7 @@
                         return new UAItem(itemType, userAgent, regexMap, 'httpUACH')
                                     .set('ua', userAgent)
                                     .set(BROWSER, this.getBrowser())
-                                    .set(CPU, this.getCPU())
+                                    // .set(CPU, this.getCPU())
                                     .set(DEVICE, this.getDevice())
                                     .set(ENGINE, this.getEngine())
                                     .set(OS, this.getOS())
@@ -1462,7 +1462,7 @@
         // public methods
         setProps.call(this, [
             ['getBrowser', createItemFunc(BROWSER)],
-            ['getCPU', createItemFunc(CPU)],
+            // ['getCPU', createItemFunc(CPU)],
             ['getDevice', createItemFunc(DEVICE)],
             ['getEngine', createItemFunc(ENGINE)],
             ['getOS', createItemFunc(OS)],
