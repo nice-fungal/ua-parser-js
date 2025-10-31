@@ -62,22 +62,22 @@
         INAPP       = 'inapp',
 
         // client hints
-        BRANDS      = 'brands',
-        FORMFACTORS = 'formFactors',
-        FULLVERLIST = 'fullVersionList',
-        PLATFORM    = 'platform',
-        PLATFORMVER = 'platformVersion',
-        BITNESS     = 'bitness',
-        CH          = 'sec-ch-ua',
-        CH_FULL_VER_LIST= CH + '-full-version-list',
-        CH_ARCH         = CH + '-arch',
-        CH_BITNESS      = CH + '-' + BITNESS,
-        CH_FORM_FACTORS = CH + '-form-factors',
-        CH_MOBILE       = CH + '-' + MOBILE,
-        CH_MODEL        = CH + '-' + MODEL,
-        CH_PLATFORM     = CH + '-' + PLATFORM,
-        CH_PLATFORM_VER = CH_PLATFORM + '-version',
-        CH_ALL_VALUES   = [BRANDS, FULLVERLIST, MOBILE, MODEL, PLATFORM, PLATFORMVER, ARCHITECTURE, FORMFACTORS, BITNESS],
+        // BRANDS      = 'brands',
+        // FORMFACTORS = 'formFactors',
+        // FULLVERLIST = 'fullVersionList',
+        // PLATFORM    = 'platform',
+        // PLATFORMVER = 'platformVersion',
+        // BITNESS     = 'bitness',
+        // CH          = 'sec-ch-ua',
+        // CH_FULL_VER_LIST= CH + '-full-version-list',
+        // CH_ARCH         = CH + '-arch',
+        // CH_BITNESS      = CH + '-' + BITNESS,
+        // CH_FORM_FACTORS = CH + '-form-factors',
+        // CH_MOBILE       = CH + '-' + MOBILE,
+        // CH_MODEL        = CH + '-' + MODEL,
+        // CH_PLATFORM     = CH + '-' + PLATFORM,
+        // CH_PLATFORM_VER = CH_PLATFORM + '-version',
+        // CH_ALL_VALUES   = [BRANDS, FULLVERLIST, MOBILE, MODEL, PLATFORM, PLATFORMVER, ARCHITECTURE, FORMFACTORS, BITNESS],
 
         // device vendors
         AMAZON      = 'Amazon',
@@ -168,20 +168,20 @@
         isString = function (val) {
             return typeof val === TYPEOF.STRING;
         },
-        itemListToArray = function (header) {
-            if (!header) return undefined;
-            var arr = [];
-            var tokens = strip(/\\?\"/g, header).split(',');
-            for (var i = 0; i < tokens.length; i++) {
-                if (tokens[i].indexOf(';') > -1) {
-                    var token = trim(tokens[i]).split(';v=');
-                    arr[i] = { brand : token[0], version : token[1] };
-                } else {
-                    arr[i] = trim(tokens[i]);
-                }
-            }
-            return arr;
-        },
+        // itemListToArray = function (header) {
+        //     if (!header) return undefined;
+        //     var arr = [];
+        //     var tokens = strip(/\\?\"/g, header).split(',');
+        //     for (var i = 0; i < tokens.length; i++) {
+        //         if (tokens[i].indexOf(';') > -1) {
+        //             var token = trim(tokens[i]).split(';v=');
+        //             arr[i] = { brand : token[0], version : token[1] };
+        //         } else {
+        //             arr[i] = trim(tokens[i]);
+        //         }
+        //     }
+        //     return arr;
+        // },
         lowerize = function (str) {
             return isString(str) ? str.toLowerCase() : str;
         },
@@ -204,9 +204,9 @@
         strip = function (pattern, str) {
             return isString(str) ? str.replace(pattern, EMPTY) : str;
         },
-        stripQuotes = function (str) {
-            return strip(/\\?\"/g, str); 
-        },
+        // stripQuotes = function (str) {
+        //     return strip(/\\?\"/g, str); 
+        // },
         trim = function (str, len) {
             str = strip(/^\s\s*/, String(str));
             return typeof len === TYPEOF.UNDEFINED ? str : str.substring(0, len);
@@ -312,29 +312,29 @@
             '8.1'   : '6.3',
             '10'    : ['6.4', '10.0'],
             'NT'    : ''
-        },
+        // },
         
-        formFactorsMap = {
-            'embedded'  : 'Automotive',
-            'mobile'    : 'Mobile',
-            'tablet'    : ['Tablet', 'EInk'],
-            'smarttv'   : 'TV',
-            'wearable'  : 'Watch',
-            'xr'        : ['VR', 'XR'],
-            '?'         : ['Desktop', 'Unknown'],
-            '*'         : undefined
-        },
+        // formFactorsMap = {
+        //     'embedded'  : 'Automotive',
+        //     'mobile'    : 'Mobile',
+        //     'tablet'    : ['Tablet', 'EInk'],
+        //     'smarttv'   : 'TV',
+        //     'wearable'  : 'Watch',
+        //     'xr'        : ['VR', 'XR'],
+        //     '?'         : ['Desktop', 'Unknown'],
+        //     '*'         : undefined
+        // },
 
-        browserHintsMap = {
-            'Chrome'        : 'Google Chrome',
-            'Edge'          : 'Microsoft Edge',
-            'Edge WebView2' : 'Microsoft Edge WebView2',
-            'Chrome WebView': 'Android WebView',
-            'Chrome Headless':'HeadlessChrome',
-            'Huawei Browser': 'HuaweiBrowser',
-            'MIUI Browser'  : 'Miui Browser',
-            'Opera Mobi'    : 'OperaMobile',
-            'Yandex'        : 'YaBrowser'
+        // browserHintsMap = {
+        //     'Chrome'        : 'Google Chrome',
+        //     'Edge'          : 'Microsoft Edge',
+        //     'Edge WebView2' : 'Microsoft Edge WebView2',
+        //     'Chrome WebView': 'Android WebView',
+        //     'Chrome Headless':'HeadlessChrome',
+        //     'Huawei Browser': 'HuaweiBrowser',
+        //     'MIUI Browser'  : 'Miui Browser',
+        //     'Opera Mobi'    : 'OperaMobile',
+        //     'Yandex'        : 'YaBrowser'
     };
 
     //////////////
@@ -1095,25 +1095,25 @@
             return item;
         };
 
-        IData.prototype.withClientHints = function () {
+        // IData.prototype.withClientHints = function () {
 
-            // nodejs / non-client-hints browsers
-            if (!NAVIGATOR_UADATA) {
-                return item
-                        .parseCH()
-                        .get();
-            }
+        //     // nodejs / non-client-hints browsers
+        //     if (!NAVIGATOR_UADATA) {
+        //         return item
+        //                 .parseCH()
+        //                 .get();
+        //     }
 
-            // browsers based on chromium 85+
-            return NAVIGATOR_UADATA
-                    .getHighEntropyValues(CH_ALL_VALUES)
-                    .then(function (res) {
-                        return item
-                                .setCH(new UACHData(res, false))
-                                .parseCH()
-                                .get();
-            });
-        };
+        //     // browsers based on chromium 85+
+        //     return NAVIGATOR_UADATA
+        //             .getHighEntropyValues(CH_ALL_VALUES)
+        //             .then(function (res) {
+        //                 return item
+        //                         .setCH(new UACHData(res, false))
+        //                         .parseCH()
+        //                         .get();
+        //     });
+        // };
 
         IData.prototype.withFeatureCheck = function () {
             return item.detectFeature().get();
@@ -1144,25 +1144,25 @@
             };
         }
 
-        if (!NAVIGATOR_UADATA) {
-            IData.prototype.then = function (cb) { 
-                var that = this;
-                var IDataResolve = function () {
-                    for (var prop in that) {
-                        if (that.hasOwnProperty(prop)) {
-                            this[prop] = that[prop];
-                        }
-                    }
-                };
-                IDataResolve.prototype = {
-                    is : IData.prototype.is,
-                    toString : IData.prototype.toString
-                };
-                var resolveData = new IDataResolve();
-                cb(resolveData);
-                return resolveData;
-            };
-        }
+        // if (!NAVIGATOR_UADATA) {
+        //     IData.prototype.then = function (cb) { 
+        //         var that = this;
+        //         var IDataResolve = function () {
+        //             for (var prop in that) {
+        //                 if (that.hasOwnProperty(prop)) {
+        //                     this[prop] = that[prop];
+        //                 }
+        //             }
+        //         };
+        //         IDataResolve.prototype = {
+        //             is : IData.prototype.is,
+        //             toString : IData.prototype.toString
+        //         };
+        //         var resolveData = new IDataResolve();
+        //         cb(resolveData);
+        //         return resolveData;
+        //     };
+        // }
 
         return new IData();
     };
@@ -1171,27 +1171,27 @@
     // Constructor
     ////////////////
 
-    function UACHData (uach, isHttpUACH) {
-        uach = uach || {};
-        setProps.call(this, CH_ALL_VALUES);
-        if (isHttpUACH) {
-            setProps.call(this, [
-                [BRANDS, itemListToArray(uach[CH])],
-                [FULLVERLIST, itemListToArray(uach[CH_FULL_VER_LIST])],
-                [MOBILE, /\?1/.test(uach[CH_MOBILE])],
-                [MODEL, stripQuotes(uach[CH_MODEL])],
-                [PLATFORM, stripQuotes(uach[CH_PLATFORM])],
-                [PLATFORMVER, stripQuotes(uach[CH_PLATFORM_VER])],
-                [ARCHITECTURE, stripQuotes(uach[CH_ARCH])],
-                [FORMFACTORS, itemListToArray(uach[CH_FORM_FACTORS])],
-                [BITNESS, stripQuotes(uach[CH_BITNESS])]
-            ]);
-        } else {
-            for (var prop in uach) {
-                if(this.hasOwnProperty(prop) && typeof uach[prop] !== TYPEOF.UNDEFINED) this[prop] = uach[prop];
-            }
-        }
-    }
+    // function UACHData (uach, isHttpUACH) {
+    //     uach = uach || {};
+    //     setProps.call(this, CH_ALL_VALUES);
+    //     if (isHttpUACH) {
+    //         setProps.call(this, [
+    //             [BRANDS, itemListToArray(uach[CH])],
+    //             [FULLVERLIST, itemListToArray(uach[CH_FULL_VER_LIST])],
+    //             [MOBILE, /\?1/.test(uach[CH_MOBILE])],
+    //             [MODEL, stripQuotes(uach[CH_MODEL])],
+    //             [PLATFORM, stripQuotes(uach[CH_PLATFORM])],
+    //             [PLATFORMVER, stripQuotes(uach[CH_PLATFORM_VER])],
+    //             [ARCHITECTURE, stripQuotes(uach[CH_ARCH])],
+    //             [FORMFACTORS, itemListToArray(uach[CH_FORM_FACTORS])],
+    //             [BITNESS, stripQuotes(uach[CH_BITNESS])]
+    //         ]);
+    //     } else {
+    //         for (var prop in uach) {
+    //             if(this.hasOwnProperty(prop) && typeof uach[prop] !== TYPEOF.UNDEFINED) this[prop] = uach[prop];
+    //         }
+    //     }
+    // }
 
     function UAItem (itemType, ua, rgxMap, uaCH) {
 
@@ -1205,10 +1205,10 @@
             return this;
         };
 
-        this.setCH = function (ch) {
-            this.uaCH = ch;
-            return this;
-        };
+        // this.setCH = function (ch) {
+        //     this.uaCH = ch;
+        //     return this;
+        // };
 
         this.detectFeature = function () {
             if (NAVIGATOR && NAVIGATOR.userAgent == this.ua) {
@@ -1275,112 +1275,112 @@
             return this;
         };
 
-        this.parseCH = function () {
-            var uaCH = this.uaCH,
-                rgxMap = this.rgxMap;
-    
-            switch (this.itemType) {
-                case BROWSER:
-                case ENGINE:
-                    var brands = uaCH[FULLVERLIST] || uaCH[BRANDS], prevName;
-                    if (brands) {
-                        for (var i=0; i<brands.length; i++) {
-                            var brandName = brands[i].brand || brands[i],
-                                brandVersion = brands[i].version;
-                            if (this.itemType == BROWSER && 
-                                !/not.a.brand/i.test(brandName) && 
-                                (!prevName || 
-                                    (/Chrom/.test(prevName) && brandName != CHROMIUM) || 
-                                    (prevName == EDGE && /WebView2/.test(brandName))
-                                )) {
-                                    brandName = strMapper(brandName, browserHintsMap);
-                                    prevName = this.get(NAME);
-                                    if (!(prevName && !/Chrom/.test(prevName) && /Chrom/.test(brandName))) {
-                                        this.set(NAME, brandName)
-                                            .set(VERSION, brandVersion)
-                                            .set(MAJOR, majorize(brandVersion));
-                                    }
-                                    prevName = brandName;
-                            }
-                            if (this.itemType == ENGINE && brandName == CHROMIUM) {
-                                this.set(VERSION, brandVersion);
-                            }
-                        }
-                    }
-                    break;
-                case CPU:
-                    var archName = uaCH[ARCHITECTURE];
-                    if (archName) {
-                        if (archName && uaCH[BITNESS] == '64') archName += '64';
-                        rgxMapper.call(this.data, archName + ';', rgxMap);
-                    }
-                    break;
-                case DEVICE:
-                    if (uaCH[MOBILE]) {
-                        this.set(TYPE, MOBILE);
-                    }
-                    if (uaCH[MODEL]) {
-                        this.set(MODEL, uaCH[MODEL]);
-                        if (!this.get(TYPE) || !this.get(VENDOR)) {
-                            var reParse = {};
-                            rgxMapper.call(reParse, 'droid 9; ' + uaCH[MODEL] + ')', rgxMap);
-                            if (!this.get(TYPE) && !!reParse.type) {
-                                this.set(TYPE, reParse.type);
-                            }
-                            if (!this.get(VENDOR) && !!reParse.vendor) {
-                                this.set(VENDOR, reParse.vendor);
-                            }
-                        }
-                    }
-                    if (uaCH[FORMFACTORS]) {
-                        var ff;
-                        if (typeof uaCH[FORMFACTORS] !== 'string') {
-                            var idx = 0;
-                            while (!ff && idx < uaCH[FORMFACTORS].length) {
-                                ff = strMapper(uaCH[FORMFACTORS][idx++], formFactorsMap);
-                            }
-                        } else {
-                            ff = strMapper(uaCH[FORMFACTORS], formFactorsMap);
-                        }
-                        this.set(TYPE, ff);
-                    }
-                    break;
-                case OS:
-                    var osName = uaCH[PLATFORM];
-                    if(osName) {
-                        var osVersion = uaCH[PLATFORMVER];
-                        if (osName == WINDOWS) osVersion = (parseInt(majorize(osVersion), 10) >= 13 ? '11' : '10');
-                        this.set(NAME, osName)
-                            .set(VERSION, osVersion);
-                    }
-                    // Xbox-Specific Detection
-                    if (this.get(NAME) == WINDOWS && uaCH[MODEL] == 'Xbox') {
-                        this.set(NAME, 'Xbox')
-                            .set(VERSION, undefined);
-                    }           
-                    break;
-                case RESULT:
-                    var data = this.data;
-                    var parse = function (itemType) {
-                        return data[itemType]
-                                .getItem()
-                                .setCH(uaCH)
-                                .parseCH()
-                                .get();
-                    };
-                    this.set(BROWSER, parse(BROWSER))
-                        .set(CPU, parse(CPU))
-                        .set(DEVICE, parse(DEVICE))
-                        .set(ENGINE, parse(ENGINE))
-                        .set(OS, parse(OS));
-            }
-            return this;
-        };
+        // this.parseCH = function () {
+        //     var uaCH = this.uaCH,
+        //         rgxMap = this.rgxMap;
+        // 
+        //     switch (this.itemType) {
+        //         case BROWSER:
+        //         case ENGINE:
+        //             var brands = uaCH[FULLVERLIST] || uaCH[BRANDS], prevName;
+        //             if (brands) {
+        //                 for (var i=0; i<brands.length; i++) {
+        //                     var brandName = brands[i].brand || brands[i],
+        //                         brandVersion = brands[i].version;
+        //                     if (this.itemType == BROWSER && 
+        //                         !/not.a.brand/i.test(brandName) && 
+        //                         (!prevName || 
+        //                             (/Chrom/.test(prevName) && brandName != CHROMIUM) || 
+        //                             (prevName == EDGE && /WebView2/.test(brandName))
+        //                         )) {
+        //                             brandName = strMapper(brandName, browserHintsMap);
+        //                             prevName = this.get(NAME);
+        //                             if (!(prevName && !/Chrom/.test(prevName) && /Chrom/.test(brandName))) {
+        //                                 this.set(NAME, brandName)
+        //                                     .set(VERSION, brandVersion)
+        //                                     .set(MAJOR, majorize(brandVersion));
+        //                             }
+        //                             prevName = brandName;
+        //                     }
+        //                     if (this.itemType == ENGINE && brandName == CHROMIUM) {
+        //                         this.set(VERSION, brandVersion);
+        //                     }
+        //                 }
+        //             }
+        //             break;
+        //         case CPU:
+        //             var archName = uaCH[ARCHITECTURE];
+        //             if (archName) {
+        //                 if (archName && uaCH[BITNESS] == '64') archName += '64';
+        //                 rgxMapper.call(this.data, archName + ';', rgxMap);
+        //             }
+        //             break;
+        //         case DEVICE:
+        //             if (uaCH[MOBILE]) {
+        //                 this.set(TYPE, MOBILE);
+        //             }
+        //             if (uaCH[MODEL]) {
+        //                 this.set(MODEL, uaCH[MODEL]);
+        //                 if (!this.get(TYPE) || !this.get(VENDOR)) {
+        //                     var reParse = {};
+        //                     rgxMapper.call(reParse, 'droid 9; ' + uaCH[MODEL] + ')', rgxMap);
+        //                     if (!this.get(TYPE) && !!reParse.type) {
+        //                         this.set(TYPE, reParse.type);
+        //                     }
+        //                     if (!this.get(VENDOR) && !!reParse.vendor) {
+        //                         this.set(VENDOR, reParse.vendor);
+        //                     }
+        //                 }
+        //             }
+        //             if (uaCH[FORMFACTORS]) {
+        //                 var ff;
+        //                 if (typeof uaCH[FORMFACTORS] !== 'string') {
+        //                     var idx = 0;
+        //                     while (!ff && idx < uaCH[FORMFACTORS].length) {
+        //                         ff = strMapper(uaCH[FORMFACTORS][idx++], formFactorsMap);
+        //                     }
+        //                 } else {
+        //                     ff = strMapper(uaCH[FORMFACTORS], formFactorsMap);
+        //                 }
+        //                 this.set(TYPE, ff);
+        //             }
+        //             break;
+        //         case OS:
+        //             var osName = uaCH[PLATFORM];
+        //             if(osName) {
+        //                 var osVersion = uaCH[PLATFORMVER];
+        //                 if (osName == WINDOWS) osVersion = (parseInt(majorize(osVersion), 10) >= 13 ? '11' : '10');
+        //                 this.set(NAME, osName)
+        //                     .set(VERSION, osVersion);
+        //             }
+        //             // Xbox-Specific Detection
+        //             if (this.get(NAME) == WINDOWS && uaCH[MODEL] == 'Xbox') {
+        //                 this.set(NAME, 'Xbox')
+        //                     .set(VERSION, undefined);
+        //             }           
+        //             break;
+        //         case RESULT:
+        //             var data = this.data;
+        //             var parse = function (itemType) {
+        //                 return data[itemType]
+        //                         .getItem()
+        //                         .setCH(uaCH)
+        //                         .parseCH()
+        //                         .get();
+        //             };
+        //             this.set(BROWSER, parse(BROWSER))
+        //                 .set(CPU, parse(CPU))
+        //                 .set(DEVICE, parse(DEVICE))
+        //                 .set(ENGINE, parse(ENGINE))
+        //                 .set(OS, parse(OS));
+        //     }
+        //     return this;
+        // };
 
         setProps.call(this, [
             ['itemType', itemType],
             ['ua', ua],
-            ['uaCH', uaCH],
+            // ['uaCH', uaCH],
             ['rgxMap', rgxMap],
             ['data', createIData(this, itemType)]
         ]);
@@ -1433,7 +1433,7 @@
                                 ((NAVIGATOR && NAVIGATOR.userAgent) ? NAVIGATOR.userAgent : // navigator.userAgent
                                     EMPTY)),                                                // empty string
 
-            httpUACH = new UACHData(headers, true),
+            // httpUACH = new UACHData(headers, true),
             regexMap = extensions ? 
                         extend(defaultRegexes, extensions) : 
                         defaultRegexes,
@@ -1441,7 +1441,7 @@
             createItemFunc = function (itemType) {
                 if (itemType == RESULT) {
                     return function () {
-                        return new UAItem(itemType, userAgent, regexMap, httpUACH)
+                        return new UAItem(itemType, userAgent, regexMap, 'httpUACH')
                                     .set('ua', userAgent)
                                     .set(BROWSER, this.getBrowser())
                                     .set(CPU, this.getCPU())
@@ -1452,7 +1452,7 @@
                     };
                 } else {
                     return function () {
-                        return new UAItem(itemType, userAgent, regexMap[itemType], httpUACH)
+                        return new UAItem(itemType, userAgent, regexMap[itemType], 'httpUACH')
                                     .parseUA()
                                     .get();
                     };
