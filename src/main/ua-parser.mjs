@@ -806,109 +806,109 @@
             // SMARTTVS
             ///////////////////
 
-            /(philips)[\w ]+tv/i,                                               // Philips
-            /smart-tv.+(samsung)/i                                              // Samsung
-            ], [VENDOR, [TYPE, SMARTTV]], [
-            /hbbtv.+maple;(\d+)/i
-            ], [[MODEL, /^/, 'SmartTV'], [VENDOR, SAMSUNG], [TYPE, SMARTTV]], [
-            /(vizio)(?: |.+model\/)(\w+-\w+)/i,                                 // Vizio
-            /tcast.+(lg)e?. ([-\w]+)/i                                          // LG SmartTV
-            ], [VENDOR, MODEL, [TYPE, SMARTTV]], [
-            /(nux; netcast.+smarttv|lg (netcast\.tv-201\d|android tv))/i
-            ], [[VENDOR, LG], [TYPE, SMARTTV]], [
-            /(apple) ?tv/i                                                      // Apple TV
-            ], [VENDOR, [MODEL, APPLE+' TV'], [TYPE, SMARTTV]], [
-            /crkey.*devicetype\/chromecast/i                                    // Google Chromecast Third Generation
-            ], [[MODEL, CHROMECAST+' Third Generation'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
-            /crkey.*devicetype\/([^/]*)/i                                       // Google Chromecast with specific device type
-            ], [[MODEL, /^/, 'Chromecast '], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
-            /fuchsia.*crkey/i                                                   // Google Chromecast Nest Hub
-            ], [[MODEL, CHROMECAST+' Nest Hub'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
-            /crkey/i                                                            // Google Chromecast, Linux-based or unknown
-            ], [[MODEL, CHROMECAST], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
-            /(portaltv)/i                                                       // Facebook Portal TV
-            ], [MODEL, [VENDOR, FACEBOOK], [TYPE, SMARTTV]], [
-            /droid.+aft(\w+)( bui|\))/i                                         // Fire TV
-            ], [MODEL, [VENDOR, AMAZON], [TYPE, SMARTTV]], [
-            /(shield \w+ tv)/i                                                  // Nvidia Shield TV
-            ], [MODEL, [VENDOR, NVIDIA], [TYPE, SMARTTV]], [
-            /\(dtv[\);].+(aquos)/i,
-            /(aquos-tv[\w ]+)\)/i                                               // Sharp
-            ], [MODEL, [VENDOR, SHARP], [TYPE, SMARTTV]],[
-            /(bravia[\w ]+)( bui|\))/i                                          // Sony
-            ], [MODEL, [VENDOR, SONY], [TYPE, SMARTTV]], [
-            /(mi(tv|box)-?\w+) bui/i                                            // Xiaomi
-            ], [MODEL, [VENDOR, XIAOMI], [TYPE, SMARTTV]], [
-            /Hbbtv.*(technisat) (.*);/i                                         // TechniSAT
-            ], [VENDOR, MODEL, [TYPE, SMARTTV]], [
-            /\b(roku)[\dx]*[\)\/]((?:dvp-)?[\d\.]*)/i,                          // Roku
-            /hbbtv\/\d+\.\d+\.\d+ +\([\w\+ ]*; *([\w\d][^;]*);([^;]*)/i         // HbbTV devices
-            ], [[VENDOR, /.+\/(\w+)/, '$1', strMapper, {'LG':'lge'}], [MODEL, trim], [TYPE, SMARTTV]], [
+            // /(philips)[\w ]+tv/i,                                               // Philips
+            // /smart-tv.+(samsung)/i                                              // Samsung
+            // ], [VENDOR, [TYPE, SMARTTV]], [
+            // /hbbtv.+maple;(\d+)/i
+            // ], [[MODEL, /^/, 'SmartTV'], [VENDOR, SAMSUNG], [TYPE, SMARTTV]], [
+            // /(vizio)(?: |.+model\/)(\w+-\w+)/i,                                 // Vizio
+            // /tcast.+(lg)e?. ([-\w]+)/i                                          // LG SmartTV
+            // ], [VENDOR, MODEL, [TYPE, SMARTTV]], [
+            // /(nux; netcast.+smarttv|lg (netcast\.tv-201\d|android tv))/i
+            // ], [[VENDOR, LG], [TYPE, SMARTTV]], [
+            // /(apple) ?tv/i                                                      // Apple TV
+            // ], [VENDOR, [MODEL, APPLE+' TV'], [TYPE, SMARTTV]], [
+            // /crkey.*devicetype\/chromecast/i                                    // Google Chromecast Third Generation
+            // ], [[MODEL, CHROMECAST+' Third Generation'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
+            // /crkey.*devicetype\/([^/]*)/i                                       // Google Chromecast with specific device type
+            // ], [[MODEL, /^/, 'Chromecast '], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
+            // /fuchsia.*crkey/i                                                   // Google Chromecast Nest Hub
+            // ], [[MODEL, CHROMECAST+' Nest Hub'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
+            // /crkey/i                                                            // Google Chromecast, Linux-based or unknown
+            // ], [[MODEL, CHROMECAST], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
+            // /(portaltv)/i                                                       // Facebook Portal TV
+            // ], [MODEL, [VENDOR, FACEBOOK], [TYPE, SMARTTV]], [
+            // /droid.+aft(\w+)( bui|\))/i                                         // Fire TV
+            // ], [MODEL, [VENDOR, AMAZON], [TYPE, SMARTTV]], [
+            // /(shield \w+ tv)/i                                                  // Nvidia Shield TV
+            // ], [MODEL, [VENDOR, NVIDIA], [TYPE, SMARTTV]], [
+            // /\(dtv[\);].+(aquos)/i,
+            // /(aquos-tv[\w ]+)\)/i                                               // Sharp
+            // ], [MODEL, [VENDOR, SHARP], [TYPE, SMARTTV]],[
+            // /(bravia[\w ]+)( bui|\))/i                                          // Sony
+            // ], [MODEL, [VENDOR, SONY], [TYPE, SMARTTV]], [
+            // /(mi(tv|box)-?\w+) bui/i                                            // Xiaomi
+            // ], [MODEL, [VENDOR, XIAOMI], [TYPE, SMARTTV]], [
+            // /Hbbtv.*(technisat) (.*);/i                                         // TechniSAT
+            // ], [VENDOR, MODEL, [TYPE, SMARTTV]], [
+            // /\b(roku)[\dx]*[\)\/]((?:dvp-)?[\d\.]*)/i,                          // Roku
+            // /hbbtv\/\d+\.\d+\.\d+ +\([\w\+ ]*; *([\w\d][^;]*);([^;]*)/i         // HbbTV devices
+            // ], [[VENDOR, /.+\/(\w+)/, '$1', strMapper, {'LG':'lge'}], [MODEL, trim], [TYPE, SMARTTV]], [
 
             ///////////////////
             // CONSOLES
             ///////////////////
 
-            /(playstation \w+)/i                                                // Playstation
-            ], [MODEL, [VENDOR, SONY], [TYPE, CONSOLE]], [
-            /\b(xbox(?: one)?(?!; xbox))[\); ]/i                                // Microsoft Xbox
-            ], [MODEL, [VENDOR, MICROSOFT], [TYPE, CONSOLE]], [
-            /(ouya)/i,                                                          // Ouya
-            /(nintendo) (\w+)/i,                                                // Nintendo
-            /(retroid) (pocket ([^\)]+))/i                                      // Retroid Pocket
-            ], [VENDOR, MODEL, [TYPE, CONSOLE]], [
-            /droid.+; (shield)( bui|\))/i                                       // Nvidia Portable
-            ], [MODEL, [VENDOR, NVIDIA], [TYPE, CONSOLE]], [
+            // /(playstation \w+)/i                                                // Playstation
+            // ], [MODEL, [VENDOR, SONY], [TYPE, CONSOLE]], [
+            // /\b(xbox(?: one)?(?!; xbox))[\); ]/i                                // Microsoft Xbox
+            // ], [MODEL, [VENDOR, MICROSOFT], [TYPE, CONSOLE]], [
+            // /(ouya)/i,                                                          // Ouya
+            // /(nintendo) (\w+)/i,                                                // Nintendo
+            // /(retroid) (pocket ([^\)]+))/i                                      // Retroid Pocket
+            // ], [VENDOR, MODEL, [TYPE, CONSOLE]], [
+            // /droid.+; (shield)( bui|\))/i                                       // Nvidia Portable
+            // ], [MODEL, [VENDOR, NVIDIA], [TYPE, CONSOLE]], [
 
             ///////////////////
             // WEARABLES
             ///////////////////
 
-            /\b(sm-[lr]\d\d[0156][fnuw]?s?|gear live)\b/i                       // Samsung Galaxy Watch
-            ], [MODEL, [VENDOR, SAMSUNG], [TYPE, WEARABLE]], [
-            /((pebble))app/i,                                                   // Pebble
-            /(asus|google|lg|oppo) ((pixel |zen)?watch[\w ]*)( bui|\))/i        // Asus ZenWatch / LG Watch / Pixel Watch
-            ], [VENDOR, MODEL, [TYPE, WEARABLE]], [
-            /(ow(?:19|20)?we?[1-3]{1,3})/i                                      // Oppo Watch
-            ], [MODEL, [VENDOR, OPPO], [TYPE, WEARABLE]], [
-            /(watch)(?: ?os[,\/]|\d,\d\/)[\d\.]+/i                              // Apple Watch
-            ], [MODEL, [VENDOR, APPLE], [TYPE, WEARABLE]], [
-            /(opwwe\d{3})/i                                                     // OnePlus Watch
-            ], [MODEL, [VENDOR, ONEPLUS], [TYPE, WEARABLE]], [
-            /(moto 360)/i                                                       // Motorola 360
-            ], [MODEL, [VENDOR, MOTOROLA], [TYPE, WEARABLE]], [
-            /(smartwatch 3)/i                                                   // Sony SmartWatch
-            ], [MODEL, [VENDOR, SONY], [TYPE, WEARABLE]], [
-            /(g watch r)/i                                                      // LG G Watch R
-            ], [MODEL, [VENDOR, LG], [TYPE, WEARABLE]], [
-            /droid.+; (wt63?0{2,3})\)/i
-            ], [MODEL, [VENDOR, ZEBRA], [TYPE, WEARABLE]], [
+            // /\b(sm-[lr]\d\d[0156][fnuw]?s?|gear live)\b/i                       // Samsung Galaxy Watch
+            // ], [MODEL, [VENDOR, SAMSUNG], [TYPE, WEARABLE]], [
+            // /((pebble))app/i,                                                   // Pebble
+            // /(asus|google|lg|oppo) ((pixel |zen)?watch[\w ]*)( bui|\))/i        // Asus ZenWatch / LG Watch / Pixel Watch
+            // ], [VENDOR, MODEL, [TYPE, WEARABLE]], [
+            // /(ow(?:19|20)?we?[1-3]{1,3})/i                                      // Oppo Watch
+            // ], [MODEL, [VENDOR, OPPO], [TYPE, WEARABLE]], [
+            // /(watch)(?: ?os[,\/]|\d,\d\/)[\d\.]+/i                              // Apple Watch
+            // ], [MODEL, [VENDOR, APPLE], [TYPE, WEARABLE]], [
+            // /(opwwe\d{3})/i                                                     // OnePlus Watch
+            // ], [MODEL, [VENDOR, ONEPLUS], [TYPE, WEARABLE]], [
+            // /(moto 360)/i                                                       // Motorola 360
+            // ], [MODEL, [VENDOR, MOTOROLA], [TYPE, WEARABLE]], [
+            // /(smartwatch 3)/i                                                   // Sony SmartWatch
+            // ], [MODEL, [VENDOR, SONY], [TYPE, WEARABLE]], [
+            // /(g watch r)/i                                                      // LG G Watch R
+            // ], [MODEL, [VENDOR, LG], [TYPE, WEARABLE]], [
+            // /droid.+; (wt63?0{2,3})\)/i
+            // ], [MODEL, [VENDOR, ZEBRA], [TYPE, WEARABLE]], [
 
             ///////////////////
             // XR
             ///////////////////
 
-            /droid.+; (glass) \d/i                                              // Google Glass
-            ], [MODEL, [VENDOR, GOOGLE], [TYPE, XR]], [
-            /(pico) ([\w ]+) os\d/i                                             // Pico
-            ], [VENDOR, MODEL, [TYPE, XR]], [
-            /(quest( \d| pro)?s?).+vr/i                                         // Meta Quest
-            ], [MODEL, [VENDOR, FACEBOOK], [TYPE, XR]], [
-            /mobile vr; rv.+firefox/i                                           // Unidentifiable VR device using Firefox Reality / Wolvic
-            ], [[TYPE, XR]], [
+            // /droid.+; (glass) \d/i                                              // Google Glass
+            // ], [MODEL, [VENDOR, GOOGLE], [TYPE, XR]], [
+            // /(pico) ([\w ]+) os\d/i                                             // Pico
+            // ], [VENDOR, MODEL, [TYPE, XR]], [
+            // /(quest( \d| pro)?s?).+vr/i                                         // Meta Quest
+            // ], [MODEL, [VENDOR, FACEBOOK], [TYPE, XR]], [
+            // /mobile vr; rv.+firefox/i                                           // Unidentifiable VR device using Firefox Reality / Wolvic
+            // ], [[TYPE, XR]], [
 
             ///////////////////
             // EMBEDDED
             ///////////////////
 
-            /(tesla)(?: qtcarbrowser|\/[-\w\.]+)/i                              // Tesla
-            ], [VENDOR, [TYPE, EMBEDDED]], [
-            /(aeobc)\b/i                                                        // Echo Dot
-            ], [MODEL, [VENDOR, AMAZON], [TYPE, EMBEDDED]], [
-            /(homepod).+mac os/i                                                // Apple HomePod
-            ], [MODEL, [VENDOR, APPLE], [TYPE, EMBEDDED]], [
-            /windows iot/i                                                      // Unidentifiable embedded device using Windows IoT
-            ], [[TYPE, EMBEDDED]], [
+            // /(tesla)(?: qtcarbrowser|\/[-\w\.]+)/i                              // Tesla
+            // ], [VENDOR, [TYPE, EMBEDDED]], [
+            // /(aeobc)\b/i                                                        // Echo Dot
+            // ], [MODEL, [VENDOR, AMAZON], [TYPE, EMBEDDED]], [
+            // /(homepod).+mac os/i                                                // Apple HomePod
+            // ], [MODEL, [VENDOR, APPLE], [TYPE, EMBEDDED]], [
+            // /windows iot/i                                                      // Unidentifiable embedded device using Windows IoT
+            // ], [[TYPE, EMBEDDED]], [
 
             ////////////////////
             // MIXED (GENERIC)
