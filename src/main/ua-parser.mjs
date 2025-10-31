@@ -53,6 +53,7 @@
         CONSOLE     = 'console',
         MOBILE      = 'mobile',
         TABLET      = 'tablet',
+        DESKTOP     = 'desktop',
         SMARTTV     = 'smarttv',
         WEARABLE    = 'wearable',
         XR          = 'xr',
@@ -590,7 +591,7 @@
             /\b(ipad)[\d,]*[;\] ].+(mac |i(pad)?)os/i
             ], [MODEL, [VENDOR, APPLE], [TYPE, TABLET]], [
             /(macintosh);/i
-            ], [MODEL, [VENDOR, APPLE]], [
+            ], [MODEL, [VENDOR, APPLE], [TYPE, DESKTOP]], [
 
             // Sharp
             /\b(sh-?[altvz]?\d\d[a-ekm]?)/i
@@ -947,7 +948,13 @@
             /(phone|mobile(?:[;\/]| [ \w\/\.]*safari)|pda(?=.+windows ce))/i    // Unidentifiable Mobile
             ], [[TYPE, MOBILE]], [
             /droid .+?; ([\w\. -]+)( bui|\))/i                                  // Generic Android Device
-            ], [MODEL, [VENDOR, 'Generic']]
+            ], [MODEL, [VENDOR, 'Generic']], [
+
+            // Desktop
+            /(windows)/i
+            ], [MODEL, [VENDOR, UNKNOWN], [TYPE, DESKTOP]], [
+            /(linux|x11|ubuntu|freebsd|debian)/i
+            ], [MODEL, [VENDOR, UNKNOWN], [TYPE, DESKTOP]]
         ],
 
         engine : [[
@@ -1516,4 +1523,4 @@
     // UAParser.DEVICE = enumerize([MODEL, VENDOR, TYPE, CONSOLE, MOBILE, SMARTTV, TABLET, WEARABLE, EMBEDDED]);
     // UAParser.ENGINE = UAParser.OS = enumerize([NAME, VERSION]);
 
-    export {UAParser};
+    export { UAParser, majorize };
