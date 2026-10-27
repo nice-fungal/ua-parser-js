@@ -7,16 +7,16 @@
    Copyright © 2012-2026 Faisal Salman <f@faisalman.com>
    AGPLv3 License *//*
    Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-   Supports browser & node.js environment. 
+   Supports browser & node.js environment.
    Demo   : https://uaparser.dev
    Source : https://github.com/faisalman/ua-parser-js */
 /////////////////////////////////////////////////////////////////////////////////
 
-/* jshint esversion: 6 */ 
+/* jshint esversion: 6 */
 /* globals window */
 
 
-    
+
     //////////////
     // Constants
     /////////////
@@ -35,7 +35,7 @@
 
         // properties
         BROWSER     = 'browser',
-        CPU         = 'cpu',
+        // CPU         = 'cpu',
         DEVICE      = 'device',
         ENGINE      = 'engine',
         OS          = 'os',
@@ -45,7 +45,7 @@
         TYPE        = 'type',
         VENDOR      = 'vendor',
         VERSION     = 'version',
-        ARCHITECTURE= 'architecture',
+        // ARCHITECTURE= 'architecture',
         MAJOR       = 'major',
         MODEL       = 'model',
 
@@ -116,13 +116,13 @@
 
         // os
         WINDOWS     = 'Windows';
-   
+
     var isWindow            = typeof window !== TYPEOF.UNDEFINED,
-        NAVIGATOR           = (isWindow && window.navigator) ? 
-                                window.navigator : 
+        NAVIGATOR           = (isWindow && window.navigator) ?
+                                window.navigator :
                                 undefined,
-        NAVIGATOR_UADATA    = (NAVIGATOR && NAVIGATOR.userAgentData) ? 
-                                NAVIGATOR.userAgentData : 
+        NAVIGATOR_UADATA    = (NAVIGATOR && NAVIGATOR.userAgentData) ?
+                                NAVIGATOR.userAgentData :
                                 undefined;
 
     ///////////
@@ -318,7 +318,7 @@
             '10'    : ['6.4', '10.0'],
             'NT'    : ''
         // },
-        
+
         // formFactorsMap = {
         //     'embedded'  : 'Automotive',
         //     'mobile'    : 'Mobile',
@@ -355,7 +355,7 @@
             ], [VERSION, [NAME, PREFIX_MOBILE + 'Chrome']], [
             /webview.+edge\/([\w\.]+)/i                                         // Microsoft Edge
             ], [VERSION, [NAME, EDGE+' WebView'], [TYPE, INAPP]], [
-            /edg(?:e|ios|a)?\/([\w\.]+)/i                                       
+            /edg(?:e|ios|a)?\/([\w\.]+)/i
             ], [VERSION, [NAME, 'Edge']], [
 
             // Presto based
@@ -376,7 +376,7 @@
             /\b(?:mxbrowser|mxios|myie2)\/?([-\w\.]*)\b/i                       // Maxthon
             ], [VERSION, [NAME, 'Maxthon']], [
             /(kindle)\/([\w\.]+)/i,                                             // Kindle
-            /(lunascape|maxthon|netfront|jasmine|blazer|sleipnir)[\/ ]?([\w\.]*)/i,      
+            /(lunascape|maxthon|netfront|jasmine|blazer|sleipnir)[\/ ]?([\w\.]*)/i,
                                                                                 // Lunascape/Maxthon/Netfront/Jasmine/Blazer/Sleipnir
             // Trident based
             /(avant|iemobile|slim(?:browser|boat|jet))[\/ ]?([\d\.]*)/i,        // Avant/IEMobile/SlimBrowser/SlimBoat/Slimjet
@@ -470,7 +470,7 @@
             ], [VERSION, [NAME, 'TikTok'], [TYPE, INAPP]], [
             /\[(linkedin)app\]/i                                                // LinkedIn App for iOS & Android
             ], [NAME, [TYPE, INAPP]], [
-            /(zalo(?:app)?)[\/\sa-z]*([\w\.-]+)/i                               // Zalo 
+            /(zalo(?:app)?)[\/\sa-z]*([\w\.-]+)/i                               // Zalo
             ], [[NAME, /(.+)/, 'Zalo'], VERSION, [TYPE, INAPP]], [
 
             /(chromium)[\/ ]([-\w\.]+)/i                                        // Chromium
@@ -532,42 +532,42 @@
                                                                                 // Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf/Obigo/Mosaic/Go/ICE/UP.Browser/Ladybird
             /\b(links) \(([\w\.]+)/i                                            // Links
             ], [NAME, [VERSION, /_/g, '.']], [
-            
+
             /(cobalt)\/([\w\.]+)/i                                              // Cobalt
             ], [NAME, [VERSION, /[^\d\.]+./, EMPTY]]
         ],
 
-        cpu : [[
-
-            /\b((amd|x|x86[-_]?|wow|win)64)\b/i                                 // AMD64 (x64)
-            ], [[ARCHITECTURE, 'amd64']], [
-
-            /(ia32(?=;))/i,                                                     // IA32 (quicktime)
-            /\b((i[346]|x)86)(pc)?\b/i                                          // IA32 (x86)
-            ], [[ARCHITECTURE, 'ia32']], [
-
-            /\b(aarch64|arm(v?[89]e?l?|_?64))\b/i                               // ARM64
-            ], [[ARCHITECTURE, 'arm64']], [
-
-            /\b(arm(v[67])?ht?n?[fl]p?)\b/i                                     // ARMHF
-            ], [[ARCHITECTURE, 'armhf']], [
-
-            // PocketPC mistakenly identified as PowerPC
-            /( (ce|mobile); ppc;|\/[\w\.]+arm\b)/i
-            ], [[ARCHITECTURE, 'arm']], [
-
-            / sun4\w[;\)]/i                                                     // SPARC
-            ], [[ARCHITECTURE, 'sparc']], [
-                                                                                // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
-            /\b(avr32|ia64(?=;)|68k(?=\))|\barm(?=v([1-7]|[5-7]1)l?|;|eabi)|(irix|mips|sparc)(64)?\b|pa-risc)/i,
-            /((ppc|powerpc)(64)?)( mac|;|\))/i,                                 // PowerPC
-            /(?:osf1|[freopnt]{3,4}bsd) (alpha)/i                               // Alpha
-            ], [[ARCHITECTURE, /ower/, EMPTY, lowerize]], [
-            /mc680.0/i
-            ], [[ARCHITECTURE, '68k']], [
-            /winnt.+\[axp/i
-            ], [[ARCHITECTURE, 'alpha']]
-        ],
+        // cpu : [[
+        //
+        //     /\b((amd|x|x86[-_]?|wow|win)64)\b/i                                 // AMD64 (x64)
+        //     ], [[ARCHITECTURE, 'amd64']], [
+        //
+        //     /(ia32(?=;))/i,                                                     // IA32 (quicktime)
+        //     /\b((i[346]|x)86)(pc)?\b/i                                          // IA32 (x86)
+        //     ], [[ARCHITECTURE, 'ia32']], [
+        //
+        //     /\b(aarch64|arm(v?[89]e?l?|_?64))\b/i                               // ARM64
+        //     ], [[ARCHITECTURE, 'arm64']], [
+        //
+        //     /\b(arm(v[67])?ht?n?[fl]p?)\b/i                                     // ARMHF
+        //     ], [[ARCHITECTURE, 'armhf']], [
+        //
+        //     // PocketPC mistakenly identified as PowerPC
+        //     /( (ce|mobile); ppc;|\/[\w\.]+arm\b)/i
+        //     ], [[ARCHITECTURE, 'arm']], [
+        //
+        //     / sun4\w[;\)]/i                                                     // SPARC
+        //     ], [[ARCHITECTURE, 'sparc']], [
+        //                                                                         // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
+        //     /\b(avr32|ia64(?=;)|68k(?=\))|\barm(?=v([1-7]|[5-7]1)l?|;|eabi)|(irix|mips|sparc)(64)?\b|pa-risc)/i,
+        //     /((ppc|powerpc)(64)?)( mac|;|\))/i,                                 // PowerPC
+        //     /(?:osf1|[freopnt]{3,4}bsd) (alpha)/i                               // Alpha
+        //     ], [[ARCHITECTURE, /ower/, EMPTY, lowerize]], [
+        //     /mc680.0/i
+        //     ], [[ARCHITECTURE, '68k']], [
+        //     /winnt.+\[axp/i
+        //     ], [[ARCHITECTURE, 'alpha']]
+        // ],
 
         device : [[
 
@@ -637,7 +637,7 @@
 
             // BLU
             /(vivo (5r?|6|8l?|go|one|s|x[il]?[2-4]?)[\w\+ ]*)(?: bui|\))/i  // Vivo series
-            ], [MODEL, [VENDOR, 'BLU'], [TYPE, MOBILE]], [    
+            ], [MODEL, [VENDOR, 'BLU'], [TYPE, MOBILE]], [
 
             // Vivo
             /; vivo (\w+)(?: bui|\))/i,
@@ -651,7 +651,7 @@
             // Lenovo
             /(ideatab[-\w ]+|602lv|d-42a|a101lv|a2109a|a3500-hv|s[56]000|pb-6505[my]|tb-?x?\d{3,4}(?:f[cu]|xu|[av])|yt\d?-[jx]?\d+[lfmx])( bui|;|\)|\/)/i,
             /lenovo ?(b[68]0[08]0-?[hf]?|tab(?:[\w- ]+?)|tb[\w-]{6,7})( bui|;|\)|\/)/i
-            ], [MODEL, [VENDOR, LENOVO], [TYPE, TABLET]], [            
+            ], [MODEL, [VENDOR, LENOVO], [TYPE, TABLET]], [
             /lenovo[-_ ]?([-\w ]+?)(?: bui|\)|\/)/i
             ], [MODEL, [VENDOR, LENOVO], [TYPE, MOBILE]], [
 
@@ -744,7 +744,7 @@
             /droid.+; (m[1-5] note) bui/i,
             /\bmz-([-\w]{2,})/i
             ], [MODEL, [VENDOR, 'Meizu'], [TYPE, MOBILE]], [
-                
+
             // Ulefone
             /; ((?:power )?armor(?:[\w ]{0,8}))(?: bui|\))/i
             ], [MODEL, [VENDOR, 'Ulefone'], [TYPE, MOBILE]], [
@@ -772,7 +772,7 @@
             /archos ?(5|gamepad2?|([\w ]*[t1789]|hello) ?\d+[\w ]*)( b|\))/i
             ], [MODEL, [VENDOR, 'Archos'], [TYPE, TABLET]], [
             /archos ([\w ]+)( b|\))/i,
-            /; (ac[3-6]\d\w{2,8})( b|\))/i 
+            /; (ac[3-6]\d\w{2,8})( b|\))/i
             ], [MODEL, [VENDOR, 'Archos'], [TYPE, MOBILE]], [
 
             // Blackview
@@ -1015,7 +1015,7 @@
 
             // Mobile OSes
             /droid ([\w\.]+)\b.+(android[- ]x86)/i                              // Android-x86
-            ], [VERSION, NAME], [                                               
+            ], [VERSION, NAME], [
             /(ubuntu) ([\w\.]+) like android/i                                  // Ubuntu Touch
             ], [[NAME, /(.+)/, '$1 Touch'], VERSION], [
             /(harmonyos)[\/ ]?([\d\.]*)/i,                                      // HarmonyOS
@@ -1033,7 +1033,7 @@
             ], [VERSION, [NAME, 'webOS']], [
             /web0s;.+?(?:chr[o0]me|safari)\/(\d+)/i
                                                                                 // https://webostv.developer.lge.com/develop/specifications/web-api-and-web-engine
-            ], [[VERSION, strMapper, {'25':'120','24':'108','23':'94','22':'87','6':'79','5':'68','4':'53','3':'38','2':'538','1':'537','*':'TV'}], [NAME, 'webOS']], [                   
+            ], [[VERSION, strMapper, {'25':'120','24':'108','23':'94','22':'87','6':'79','5':'68','4':'53','3':'38','2':'538','1':'537','*':'TV'}], [NAME, 'webOS']], [
             /watch(?: ?os[,\/ ]|\d,\d\/)([\d\.]+)/i                              // watchOS
             ], [VERSION, [NAME, 'watchOS']], [
 
@@ -1169,7 +1169,7 @@
             };
         }
 
-        // IData.prototype.then = function (cb) { 
+        // IData.prototype.then = function (cb) {
         //     var that = this;
         //     var IDataResolve = function () {
         //         for (var prop in that) {
@@ -1279,7 +1279,7 @@
                                 .get();
                     };
                     this.set(BROWSER, detect(BROWSER))
-                        .set(CPU, detect(CPU))
+                        // .set(CPU, detect(CPU))
                         .set(DEVICE, detect(DEVICE))
                         .set(ENGINE, detect(ENGINE))
                         .set(OS, detect(OS));
@@ -1327,10 +1327,10 @@
     //                 for (var i=0; i<brands.length; i++) {
     //                     var brandName = brands[i].brand || brands[i],
     //                         brandVersion = brands[i].version;
-    //                     if (this.itemType == BROWSER && 
-    //                         !/not.a.brand/i.test(brandName) && 
-    //                         (!prevName || 
-    //                             (/Chrom/.test(prevName) && brandName != CHROMIUM) || 
+    //                     if (this.itemType == BROWSER &&
+    //                         !/not.a.brand/i.test(brandName) &&
+    //                         (!prevName ||
+    //                             (/Chrom/.test(prevName) && brandName != CHROMIUM) ||
     //                             (prevName == EDGE && /WebView2/.test(brandName))
     //                         )) {
     //                             brandName = strMapper(brandName, browserHintsMap);
@@ -1397,7 +1397,7 @@
     //             if (this.get(NAME) == WINDOWS && uaCH[MODEL] == 'Xbox') {
     //                 this.set(NAME, 'Xbox')
     //                     .set(VERSION, undefined);
-    //             }           
+    //             }
     //             break;
     //         case RESULT:
     //             var data = this.data;
@@ -1422,7 +1422,7 @@
         if (typeof ua === TYPEOF.OBJECT) {
             if (isExtensions(ua, true)) {
                 if (typeof extensions === TYPEOF.OBJECT) {
-                    headers = extensions;               // case UAParser(extensions, headers)           
+                    headers = extensions;               // case UAParser(extensions, headers)
                 }
                 extensions = ua;                        // case UAParser(extensions)
             } else {
@@ -1452,7 +1452,7 @@
                 headers = normalized;
             }
         }
-        
+
         if (!(this instanceof UAParser)) {
             return new UAParser(ua, extensions, headers).getResult();
         }
@@ -1471,7 +1471,7 @@
                         return new UAItem(itemType, userAgent, regexMap, 'httpUACH')
                                     .set('ua', userAgent)
                                     .set(BROWSER, this.getBrowser())
-                                    .set(CPU, this.getCPU())
+                                    // .set(CPU, this.getCPU())
                                     .set(DEVICE, this.getDevice())
                                     .set(ENGINE, this.getEngine())
                                     .set(OS, this.getOS())
@@ -1485,11 +1485,11 @@
                     };
                 }
             };
-            
+
         // public methods
         setProps.call(this, [
             ['getBrowser', createItemFunc(BROWSER)],
-            ['getCPU', createItemFunc(CPU)],
+            // ['getCPU', createItemFunc(CPU)],
             ['getDevice', createItemFunc(DEVICE)],
             ['getEngine', createItemFunc(ENGINE)],
             ['getOS', createItemFunc(OS)],
